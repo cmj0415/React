@@ -20,11 +20,19 @@ export default function App() {
   }, [segTree]);
 
   const handleQuery = (l, r) => {
+    if (l < 0 || l > r || l >= arr.length || r < 0 || r >= arr.length) {
+      alert('非法輸入！');
+      return;
+    }
     const result = query(segTree, 1, l, r, 0, arr.length - 1);
     alert(`區間 [${l}, ${r}] 的總和為：${result}`);
   };
 
   const handleUpdate = (val, idx) => {
+    if (idx < 0 || idx >= arr.length || val < -999 || val > 999) {
+      alert('想玩啊？')
+      return;
+    }
     update(segTree, val, 1, idx, 0, arr.length - 1);
     setSegTree([...segTree]);
   };
@@ -40,8 +48,8 @@ export default function App() {
             translate={{ x: window.innerWidth / 2, y: 60 }}
             renderCustomNodeElement={({ nodeDatum }) => (
               <g>
-                <circle r={15} fill="skyblue" stroke="black" strokeWidth={1.5} />
-                <text x={0} y={5} textAnchor="middle" fontSize={12}>
+                <circle r={30} fill="skyblue" stroke="black" strokeWidth={1.5} />
+                <text x={0} y={5} textAnchor="middle" fontSize={16}>
                   {nodeDatum.name}
                 </text>
               </g>
