@@ -33,6 +33,7 @@ export default function App() {
       alert('想玩啊？')
       return;
     }
+    arr[idx] = val;
     update(segTree, val, 1, idx, 0, arr.length - 1);
     setSegTree([...segTree]);
   };
@@ -41,11 +42,13 @@ export default function App() {
     <>
       <h1>線段樹視覺化</h1>
       {treeData && (
-        <div style={{ width: '100vw', height: '80vh' }}>
+        <div style={{ width: '100vw', height: '70vh' }}>
           <Tree
             data={treeData}
             orientation="vertical"
-            translate={{ x: window.innerWidth / 2, y: 60 }}
+            translate={{ x: window.innerWidth / 2, y: 50 }}
+            zoomable={false}
+            draggable={false}
             renderCustomNodeElement={({ nodeDatum }) => (
               <g>
                 <circle r={30} fill="skyblue" stroke="black" strokeWidth={1.5} />
@@ -57,6 +60,33 @@ export default function App() {
           />
         </div>
       )}
+      <div>
+      <div 
+        style={{ 
+          display: 'flex', 
+          gap: '10px', 
+          position: 'absolute', 
+          top: '75%', 
+          left: '50%',
+          transform: "translate(-50%, -50%)",
+          justifyContent: 'center',
+          alignItems: 'center' 
+        }}>
+        {arr.map((value, index) => (
+          <div
+            key={index}
+            style={{
+              padding: '20px',
+              border: '1px solid black',
+              borderRadius: '5px',
+              backgroundColor: '#000000',
+            }}
+          >
+            {value}
+          </div>
+        ))}
+        </div>
+      </div>
       <Controls onQuery={handleQuery} onUpdate={handleUpdate} />
     </>
   );
