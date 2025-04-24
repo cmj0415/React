@@ -20,10 +20,10 @@ export function query(seg, index = 1, begin, end, l = 0, r = 3) {
 export function update(seg, val, index = 1, x, l = 0, r = 3) {
     if (r < x || l > x) return;
     if (l === r) {
-        seg[l] = val;
+        seg[index] = val;
         return;
     }
-    var mid = (l + r) / 2;
+    var mid = Math.floor((l + r) / 2);
     update(seg, val, 2 * index, x, l, mid);
     update(seg, val, 2 * index + 1, x, mid + 1, r);
     seg[index] = seg[2 * index] + seg[2 * index + 1];

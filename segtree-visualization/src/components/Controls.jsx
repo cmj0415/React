@@ -9,15 +9,15 @@ export default function Controls({ onQuery, onUpdate }) {
       <>
         <>
           <span>查詢區間：</span>
-          <input type="number" value={l} onChange={e => setL(+e.target.value)} />
-          <input type="number" value={r} onChange={e => setR(+e.target.value)} />
-          <button onClick={() => onQuery(l, r)}>查詢</button>
+          <input type="number" value={l} onChange={e => setL(e.target.value)} />
+          <input type="number" value={r} onChange={e => setR(e.target.value)} />
+          <button onClick={() => onQuery(Number(l), Number(r))}>查詢</button>
         </>
         <>
           <span>更新值：</span>
-          <input type="number" value={idx} onChange={e => setIdx(+e.target.value)} />
-          <input type="number" value={val} onChange={e => setVal(+e.target.value)} />
-          <button onClick={() => onUpdate(val, idx)}>更新</button>
+          <input type="number" value={idx} onChange={e => setIdx(e.target.value)} />
+          <input type="number" value={val} onChange={e => setVal(e.target.value)} />
+          <button onClick={() => onUpdate(Number(val), Number(idx))}>更新</button>
         </>
       </>
     );
